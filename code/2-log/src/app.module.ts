@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Logger, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserService } from './user/user.service';
@@ -13,6 +13,7 @@ const envFilePath = [
   resolve(__dirname, `../.env.${process.env.NODE_ENV ?? 'development'}`),
 ];
 
+@Global()
 @Module({
   imports: [
     UserModule,
@@ -30,6 +31,7 @@ const envFilePath = [
     }),
   ],
   controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  providers: [AppService, UserService, Logger],
+  exports: [Logger],
 })
 export class AppModule {}

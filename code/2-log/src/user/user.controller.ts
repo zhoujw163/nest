@@ -6,17 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  Logger,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ConfigService } from '@nestjs/config';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly configService: ConfigService,
+    private readonly logger: Logger,
   ) {}
 
   @Post()
@@ -26,8 +26,8 @@ export class UserController {
 
   @Get()
   findAll() {
-    // const dbUrl = this.configService.get<string>('DB_URL');
-    // console.log('🚀 ~ UserController ~ findAll ~ dbUrl:', dbUrl);
+    // this.logger.log('🚀 ~ UserController ~ findAll:');
+    // this.logger.warn('UserController ~ findAll ~ warn log :');
     return this.userService.findAll();
   }
 
