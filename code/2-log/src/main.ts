@@ -6,7 +6,6 @@ import {
 } from 'nest-winston';
 import * as winston from 'winston';
 import 'winston-daily-rotate-file';
-import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { AllExceptionFilter } from './filter/all-exception.filter';
 
 async function bootstrap() {

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Logger,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -25,9 +26,11 @@ export class UserController {
   }
 
   @Get()
-  findAll() {
-    // this.logger.log('🚀 ~ UserController ~ findAll:');
-    // this.logger.warn('UserController ~ findAll ~ warn log :');
+  findAll(@Query('page') page: number, @Query('size') size: number) {
+    this.logger.log(
+      `🚀 ~ UserController ~ findAll ~ page: ${page}, size: ${size}}`,
+    );
+    const p = page;
     return this.userService.findAll();
   }
 
